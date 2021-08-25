@@ -17,7 +17,8 @@ namespace TeamHarrySpyDuhPoject.DataAccess
                 {
                     SpySkills.Commando,
                     SpySkills.Infiltrator,
-                    SpySkills.NaturalOrator
+                    SpySkills.NaturalOrator,
+                    SpySkills.MasterInterrogator
                 },
                 Services = new List<SpyServices>()
                 {
@@ -32,6 +33,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
                 Name = "Morty",
                 Skills = new List<SpySkills>()
                 {
+                    SpySkills.Commando,
                     SpySkills.Infiltrator,
                     SpySkills.EscapeArtist,
                     SpySkills.SafeCracker
@@ -66,7 +68,16 @@ namespace TeamHarrySpyDuhPoject.DataAccess
 
         internal IEnumerable<Spy> GetAll()
         {
-            return _spies;
+           return _spies;
+        }
+
+        internal IEnumerable<Spy> GetBySkill(SpySkills skill)
+        {
+            var specificSpies = _spies
+                .Where(s => s.Skills.Contains(skill));             
+
+            return specificSpies;
+
         }
 
         internal SpyInfo GetInfo(Guid id)
