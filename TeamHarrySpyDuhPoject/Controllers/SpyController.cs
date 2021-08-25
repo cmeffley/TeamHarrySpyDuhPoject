@@ -58,5 +58,13 @@ namespace TeamHarrySpyDuhPoject.Controllers
             var spyWithFriends = _repo.GetSpyById(spyId);
             return Ok(spyWithFriends.Friends);
         }
+
+        [HttpGet("crew")]
+        public IActionResult ShowPotentialCrew(Guid spyId, Guid spyFriend)
+        {
+            var spy = _repo.GetSpyById(spyId);
+            var friendToBe = _repo.GetSpyById(spyFriend);
+            return Ok();
+        }
     }
 }
