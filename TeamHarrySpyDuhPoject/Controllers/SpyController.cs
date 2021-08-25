@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using TeamHarrySpyDuhPoject.DataAccess;
-using TeamHarrySpyDuhPoject.Models;
+
 
 namespace TeamHarrySpyDuhPoject.Controllers
 {
@@ -20,6 +20,12 @@ namespace TeamHarrySpyDuhPoject.Controllers
         public IActionResult GetAllSpies()
         {
             return Ok(_repo.GetAll());
+        }
+
+        [HttpGet("info/{id}")]
+        public SpyInfo GetSpyInfo(Guid id)
+        {
+            return _repo.GetInfo(id);
         }
 
         [HttpPost]
