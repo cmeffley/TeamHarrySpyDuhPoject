@@ -84,5 +84,24 @@ namespace TeamHarrySpyDuhPoject.DataAccess
             return specificSpies;
 
         }
+
+        internal SpyInfo GetInfo(Guid id)
+        {
+            var spy = _spies.Where(spy => spy.Id == id).FirstOrDefault();
+
+            return new SpyInfo { Skills = spy.Skills, Services = spy.Services };
+        }
+
+        internal Spy GetSpyById(Guid spyId)
+        {
+            return _spies.FirstOrDefault(spy => spy.Id == spyId);
+        }
+
     }
+    public class SpyInfo
+    {
+        public List<SpySkills> Skills { get; set; }
+        public List<SpyServices> Services { get; set; }
+    }
+
 }

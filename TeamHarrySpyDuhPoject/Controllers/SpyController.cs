@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using TeamHarrySpyDuhPoject.DataAccess;
 using TeamHarrySpyDuhPoject.Models;
+
 
 namespace TeamHarrySpyDuhPoject.Controllers
 {
@@ -35,5 +37,26 @@ namespace TeamHarrySpyDuhPoject.Controllers
                 });
         }
 
+        [HttpGet("info/{id}")]
+        public SpyInfo GetSpyInfo(Guid id)
+        {
+            return _repo.GetInfo(id);
+        }
+
+        [HttpPost]
+        public IActionResult AddSpyToFriendsList(Guid spy1Id, Guid spyFriendToBeId)
+        {
+            var friend1 = _repo.GetSpyById(spy1Id);
+            var friendToBe = _repo.GetSpyById(spyFriendToBeId);
+            friend1.Friends.Add(friendToBe);
+            return Ok();
+        }
+
+        [HttpGet("friendsList")]
+        public IActionResult ShowSpyFriends(Guid spyId)
+        {
+            var spyWithFriends = _repo.GetSpyById(spyId);
+            return Ok(spyWithFriends.Friends);
+        }
     }
 }
