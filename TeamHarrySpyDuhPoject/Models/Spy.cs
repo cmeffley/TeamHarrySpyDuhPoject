@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 
+
 namespace TeamHarrySpyDuhPoject.Models
 {
     public class Spy
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-
         public List<SpySkills> Skills { get; set; } = new List<SpySkills>();
 
         public List<SpyServices> Services  { get; set; }  = new List<SpyServices>();
