@@ -68,11 +68,6 @@ namespace TeamHarrySpyDuhPoject.DataAccess
 
         internal IEnumerable<Spy> GetAll()
         {
-           foreach(var s in _spies)
-           {
-                Enum.GetName(typeof(SpySkills), s.Skills);
-                Enum.GetName(typeof(SpyServices), s.Services);
-           }
            return _spies;
         }
 
