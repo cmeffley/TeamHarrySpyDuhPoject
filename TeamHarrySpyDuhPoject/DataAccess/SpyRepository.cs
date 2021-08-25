@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TeamHarrySpyDuhPoject.Models;
 
 namespace TeamHarrySpyDuhPoject.DataAccess
@@ -67,5 +68,15 @@ namespace TeamHarrySpyDuhPoject.DataAccess
         {
             return _spies;
         }
+
+        internal Spy GetSpyById(Guid spyId)
+        {
+            return _spies.FirstOrDefault(spy => spy.Id == spyId);
+        }
+
+        //internal void Add(Spy spyFriend)
+        //{
+        //    _spies.
+        //}
     }
 }
