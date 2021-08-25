@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using TeamHarrySpyDuhPoject.Models;
 
 namespace TeamHarrySpyDuhPoject.DataAccess
@@ -16,7 +17,8 @@ namespace TeamHarrySpyDuhPoject.DataAccess
                 {
                     SpySkills.Commando,
                     SpySkills.Infiltrator,
-                    SpySkills.NaturalOrator
+                    SpySkills.NaturalOrator,
+                    SpySkills.MasterInterrogator
                 },
                 Services = new List<SpyServices>()
                 {
@@ -31,6 +33,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
                 Name = "Morty",
                 Skills = new List<SpySkills>()
                 {
+                    SpySkills.Commando,
                     SpySkills.Infiltrator,
                     SpySkills.EscapeArtist,
                     SpySkills.SafeCracker
@@ -65,7 +68,21 @@ namespace TeamHarrySpyDuhPoject.DataAccess
 
         internal IEnumerable<Spy> GetAll()
         {
-            return _spies;
+           foreach(var s in _spies)
+           {
+                Enum.GetName(typeof(SpySkills), s.Skills);
+                Enum.GetName(typeof(SpyServices), s.Services);
+           }
+           return _spies;
+        }
+
+        internal IEnumerable<Spy> GetBySkill(SpySkills skill)
+        {
+            var specificSpies = _spies
+                .Where(s => s.Skills.Contains(skill));             
+
+            return specificSpies;
+
         }
     }
 }
