@@ -52,11 +52,34 @@ namespace TeamHarrySpyDuhPoject.Controllers
             return Ok();
         }
 
+
         [HttpGet("friendsList")]
         public IActionResult ShowSpyFriends(Guid spyId)
         {
             var spyWithFriends = _repo.GetSpyById(spyId);
             return Ok(spyWithFriends.Friends);
         }
+
+        [HttpPost("addToEnemiesList")]
+        public IActionResult AddSpyToEnemiesList(Guid selectedSpy, Guid assignedEnemy)
+        {
+            var spy1 = _repo.GetSpyById(selectedSpy);
+            var spy2 = _repo.GetSpyById(assignedEnemy);
+            spy1.Enemies.Add(spy2);
+            return Ok();
+
+        }
+
+
+
+        [HttpGet("enemiesList")]
+        public IActionResult ShowSpyEnemies(Guid enemyId)
+        {
+            var enemySpies = _repo.GetSpyById(enemyId);
+            var spyWithEnemies = _repo.GetSpyById(enemyId);
+            return Ok(spyWithEnemies.Enemies);
+        }
+
+        
     }
 }

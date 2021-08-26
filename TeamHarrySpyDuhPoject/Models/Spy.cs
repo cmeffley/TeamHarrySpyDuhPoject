@@ -7,6 +7,7 @@ namespace TeamHarrySpyDuhPoject.Models
     public class Spy
     {
         public Guid Id { get; set; }
+
         public string Name { get; set; }
         public List<SpySkills> Skills { get; set; } = new List<SpySkills>();
 
@@ -15,6 +16,7 @@ namespace TeamHarrySpyDuhPoject.Models
         public List<Spy> Friends { get; set; } = new List<Spy>();
 
         public List<Spy> Enemies { get; set; } = new List<Spy>();
+
     }
 
     public enum SpySkills
