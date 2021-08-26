@@ -52,6 +52,7 @@ namespace TeamHarrySpyDuhPoject.Controllers
             return Ok();
         }
 
+
         [HttpGet("friendsList")]
         public IActionResult ShowSpyFriends(Guid spyId)
         {
@@ -59,12 +60,26 @@ namespace TeamHarrySpyDuhPoject.Controllers
             return Ok(spyWithFriends.Friends);
         }
 
-        [HttpGet("crew")]
-        public IActionResult ShowPotentialCrew(Guid spyId, Guid spyFriend)
+        [HttpPost("addToEnemiesList")]
+        public IActionResult AddSpyToEnemiesList(Guid selectedSpy, Guid assignedEnemy)
         {
-            var spy = _repo.GetSpyById(spyId);
-            var friendToBe = _repo.GetSpyById(spyFriend);
+            var spy1 = _repo.GetSpyById(selectedSpy);
+            var spy2 = _repo.GetSpyById(assignedEnemy);
+            spy1.Enemies.Add(spy2);
             return Ok();
+
         }
+
+
+
+        [HttpGet("enemiesList")]
+        public IActionResult ShowSpyEnemies(Guid enemyId)
+        {
+            var enemySpies = _repo.GetSpyById(enemyId);
+            var spyWithEnemies = _repo.GetSpyById(enemyId);
+            return Ok(spyWithEnemies.Enemies);
+        }
+
+        
     }
 }
