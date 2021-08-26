@@ -60,11 +60,15 @@ namespace TeamHarrySpyDuhPoject.Controllers
         }
 
         [HttpGet("crew")]
-        public IActionResult ShowPotentialCrew(Guid spyId, Guid spyFriend)
+        public IActionResult ShowPotentialCrew(Guid spyId)
         {
+            // get spy
             var spy = _repo.GetSpyById(spyId);
-            var friendToBe = _repo.GetSpyById(spyFriend);
-            return Ok();
+            // see that spy's friend's list
+            var spyFriends = spy.Friends;
+            // get a spy from that list and see their friends
+            
+            return Ok(spy);
         }
     }
 }
