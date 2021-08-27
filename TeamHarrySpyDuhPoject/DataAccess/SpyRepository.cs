@@ -26,6 +26,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
                     SpyServices.Propaganda,
                     SpyServices.StealBlueprint
                 },
+                AgencyId = Guid.NewGuid()
             },
             new Spy
             {
@@ -44,7 +45,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
                     SpyServices.DiplomaticPressure,
                     SpyServices.Sabotage
                 },
-
+                AgencyId = Guid.NewGuid()
             },
             new Spy
             {
@@ -62,7 +63,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
                     SpyServices.StealBlueprint,
                     SpyServices.BuildNetwork
                 },
-
+                AgencyId = Guid.NewGuid()
             }
         };
 
@@ -90,6 +91,13 @@ namespace TeamHarrySpyDuhPoject.DataAccess
         internal Spy GetSpyById(Guid spyId)
         {
             return _spies.FirstOrDefault(spy => spy.Id == spyId);
+        }
+
+        internal IEnumerable<Spy> GetAgencySpies(Guid agencyId)
+        {
+            var AgencySpies = _spies.Where(spy => spy.AgencyId == agencyId);
+
+            return AgencySpies;
         }
 
         
