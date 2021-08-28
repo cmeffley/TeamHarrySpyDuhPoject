@@ -49,7 +49,7 @@ namespace TeamHarrySpyDuhPoject.Controllers
             return _repo.GetAgencySpies(agencyId);
         }
 
-        [HttpPost]
+        [HttpPost("addToFriendsList")]
         public IActionResult AddSpyToFriendsList(Guid spy1Id, Guid spyFriendToBeId)
         {
             var friend1 = _repo.GetSpyById(spy1Id);
