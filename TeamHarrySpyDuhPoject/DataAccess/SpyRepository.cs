@@ -72,33 +72,33 @@ namespace TeamHarrySpyDuhPoject.DataAccess
            return _spies;
         }
 
-        internal IEnumerable<Spy> GetBySkill(SpySkills skill)
-        {
-            var specificSpies = _spies
-                .Where(s => s.Skills.Contains(skill));             
+            internal IEnumerable<Spy> GetBySkill(SpySkills skill)
+            {
+                var specificSpies = _spies
+                    .Where(s => s.Skills.Contains(skill));
 
-            return specificSpies;
+                return specificSpies;
 
-        }
+            }
 
         internal SpyInfo GetInfo(Guid id)
         {
             var spy = _spies.Where(spy => spy.Id == id).FirstOrDefault();
 
-            return new SpyInfo { Skills = spy.Skills, Services = spy.Services };
-        }
+                return new SpyInfo { Skills = spy.Skills, Services = spy.Services };
+            }
 
-        internal Spy GetSpyById(Guid spyId)
-        {
-            return _spies.FirstOrDefault(spy => spy.Id == spyId);
-        }
+            internal Spy GetSpyById(Guid spyId)
+            {
+                return _spies.FirstOrDefault(spy => spy.Id == spyId);
+            }
 
-        internal IEnumerable<Spy> GetAgencySpies(Guid agencyId)
-        {
-            var AgencySpies = _spies.Where(spy => spy.AgencyId == agencyId);
+            internal IEnumerable<Spy> GetAgencySpies(Guid agencyId)
+            {
+                var AgencySpies = _spies.Where(spy => spy.AgencyId == agencyId);
 
-            return AgencySpies;
-        }
+                return AgencySpies;
+            }
 
         
 
@@ -109,4 +109,5 @@ namespace TeamHarrySpyDuhPoject.DataAccess
         public List<SpyServices> Services { get; set; }
     }
 
+    }
 }
