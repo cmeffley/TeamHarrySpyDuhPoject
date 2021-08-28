@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TeamHarrySpyDuhPoject.DataAccess;
+using TeamHarrySpyDuhPoject.DataAccess.TeamHarrySpyDuhPoject.DataAccess;
 using TeamHarrySpyDuhPoject.Models;
 
 
@@ -36,6 +37,7 @@ namespace TeamHarrySpyDuhPoject.Controllers
                     Name = spy.Name
                 });
         }
+
 
         [HttpGet("info/{id}")]
         public SpyInfo GetSpyInfo(Guid id)
@@ -96,6 +98,37 @@ namespace TeamHarrySpyDuhPoject.Controllers
 
             return Ok(howManyDaysLeft);
         }
+
+        [HttpDelete("{spyId}/removeSkill/{skill}")]
+        public IActionResult RemoveSkill(Guid spyId, SpySkills skill)
+        {
+
+            //get the spy from the repository
+            var spy = _repo.GetSpyById(spyId);
+            //modify the skills list to add the new skill
+            spy.Skills.RemoveAll(spySkill => spySkill == skill);
+            //spy.Skills.RemoveAll(x => x == skill);
+            //return the spy with the new skill attached
+            //...profit
+
+            return Ok(spy);
+        }
+
+        [HttpDelete("{spyId}/removeService/{service}")]
+        public IActionResult RemoveService(Guid spyId, SpyServices service)
+        {
+
+            //get the spy from the repository
+            var spy = _repo.GetSpyById(spyId);
+            //modify the skills list to add the new skill
+            spy.Services.RemoveAll(spyService => spyService == service);
+            //spy.Skills.RemoveAll(x => x == skill);
+            //return the spy with the new skill attached
+            //...profit
+
+            return Ok(spy);
+        }
+
 
     }
 }
