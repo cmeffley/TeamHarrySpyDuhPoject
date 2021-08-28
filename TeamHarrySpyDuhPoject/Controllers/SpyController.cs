@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TeamHarrySpyDuhPoject.DataAccess;
+using TeamHarrySpyDuhPoject.DataAccess.TeamHarrySpyDuhPoject.DataAccess;
 using TeamHarrySpyDuhPoject.Models;
 
 
@@ -44,6 +45,12 @@ namespace TeamHarrySpyDuhPoject.Controllers
             return _repo.GetInfo(id);
         }
 
+        [HttpGet("agency/{agencyId}")]
+        public IEnumerable<Spy> GetSpiesByAgency(Guid agencyId)
+        {
+            return _repo.GetAgencySpies(agencyId);
+        }
+
         [HttpPost]
         public IActionResult AddSpyToFriendsList(Guid spy1Id, Guid spyFriendToBeId)
         {
@@ -77,12 +84,6 @@ namespace TeamHarrySpyDuhPoject.Controllers
             var enemySpies = _repo.GetSpyById(enemyId);
             var spyWithEnemies = _repo.GetSpyById(enemyId);
             return Ok(spyWithEnemies.Enemies);
-        }
-
-        [HttpGet("agency/{agencyId}")]
-        public IEnumerable<Spy> GetSpiesByAgency(Guid agencyId)
-        {
-            return _repo.GetAgencySpies(agencyId);
         }
 
         [HttpDelete("{spyId}/removeSkill/{skill}")]

@@ -96,6 +96,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
             return _spies.FirstOrDefault(spy => spy.Id == spyId);
         }
 
+<<<<<<< HEAD
         internal IEnumerable<Spy> GetAgencySpies(Guid agencyId)
         {
             var AgencySpies = _spies.Where(spy => spy.AgencyId == agencyId);
@@ -103,6 +104,8 @@ namespace TeamHarrySpyDuhPoject.DataAccess
             return AgencySpies;
         }
 
+=======
+>>>>>>> 3edfb95e1d946b2d52b10d2e4e1dc515f60ff054
     }
     public class SpyInfo
     {
