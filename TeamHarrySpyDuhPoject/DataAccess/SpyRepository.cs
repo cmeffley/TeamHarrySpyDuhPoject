@@ -80,6 +80,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
 
         }
 
+
         internal SpyInfo GetInfo(Guid id)
         {
             var spy = _spies.Where(spy => spy.Id == id).FirstOrDefault();
@@ -92,7 +93,6 @@ namespace TeamHarrySpyDuhPoject.DataAccess
             return _spies.FirstOrDefault(spy => spy.Id == spyId);
         }
 
-        
 
     }
     public class SpyInfo
