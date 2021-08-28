@@ -13,6 +13,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
             {
                 Id = Guid.NewGuid(),
                 Name = "Rick",
+                DaysRemaining = 30,
                 Skills = new List<SpySkills>()
                 {
                     SpySkills.Commando,
@@ -32,6 +33,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
             {
                 Id = Guid.NewGuid(),
                 Name = "Morty",
+                DaysRemaining = 20,
                 Skills = new List<SpySkills>()
                 {
                     SpySkills.Commando,
@@ -51,6 +53,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
             {
                 Id = Guid.NewGuid(),
                 Name = "Mary",
+                DaysRemaining = 10,
                 Skills = new List<SpySkills>()
                 {
                     SpySkills.Linguist,
@@ -100,7 +103,6 @@ namespace TeamHarrySpyDuhPoject.DataAccess
             return AgencySpies;
         }
 
-        
 
     }
     public class SpyInfo
