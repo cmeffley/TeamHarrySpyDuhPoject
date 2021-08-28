@@ -51,7 +51,7 @@ namespace TeamHarrySpyDuhPoject.Controllers
             return _repo.GetAgencySpies(agencyId);
         }
 
-        [HttpPost]
+        [HttpPost("addToFriendsList")]
         public IActionResult AddSpyToFriendsList(Guid spy1Id, Guid spyFriendToBeId)
         {
             var friend1 = _repo.GetSpyById(spy1Id);
@@ -84,6 +84,24 @@ namespace TeamHarrySpyDuhPoject.Controllers
             var enemySpies = _repo.GetSpyById(enemyId);
             var spyWithEnemies = _repo.GetSpyById(enemyId);
             return Ok(spyWithEnemies.Enemies);
+        }
+
+        [HttpGet("crew")]
+        public IActionResult ShowPotentialCrew(Guid spyId)
+        {
+            // get spy
+            var spy = _repo.GetSpyById(spyId);
+            // see that spy's friend's list
+            var spyFriends = spy.Friends;
+
+            var crew = new List<Spy>();
+
+            foreach (var friend in spyFriends)
+            {
+                crew.Add(friend);
+            }
+            return Ok(crew);
+            
         }
 
         [HttpGet("daysRemaining")]
