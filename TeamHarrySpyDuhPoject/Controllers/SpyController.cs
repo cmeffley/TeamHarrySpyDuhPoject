@@ -44,6 +44,12 @@ namespace TeamHarrySpyDuhPoject.Controllers
             return _repo.GetInfo(id);
         }
 
+        [HttpGet("agency/{agencyId}")]
+        public IEnumerable<Spy> GetSpiesByAgency(Guid agencyId)
+        {
+            return _repo.GetAgencySpies(agencyId);
+        }
+
         [HttpPost]
         public IActionResult AddSpyToFriendsList(Guid spy1Id, Guid spyFriendToBeId)
         {
