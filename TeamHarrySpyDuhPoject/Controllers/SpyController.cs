@@ -94,24 +94,13 @@ namespace TeamHarrySpyDuhPoject.Controllers
             // see that spy's friend's list
             var spyFriends = spy.Friends;
 
-            //to hold all the friends
-            //var crew = new List<Spy>();
+            var crew = new List<Spy>();
 
-            // get a spy from that list and see their friends
-            //foreach (var friend in spyFriends)
-            //{
-            //    //add friends friends to the crew
-            //    crew.Add(friend);
-            //}
-
-            //Look into linq's SelectMany()
-            var crew = spyFriends.SelectMany(x => x.Friends);
-
-            //foreach (var friend in spyFriends)
-            //{
-            //    crew.Add(friend);
-            //}
-            return Ok();
+            foreach (var friend in spyFriends)
+            {
+                crew.Add(friend);
+            }
+            return Ok(crew);
             
         }
 
