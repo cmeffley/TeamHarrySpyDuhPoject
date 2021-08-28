@@ -79,6 +79,11 @@ namespace TeamHarrySpyDuhPoject.Controllers
             return Ok(spyWithEnemies.Enemies);
         }
 
+        [HttpGet("agency/{agencyId}")]
+        public IEnumerable<Spy> GetSpiesByAgency(Guid agencyId)
+        {
+            return _repo.GetAgencySpies(agencyId);
+        }
 
         [HttpDelete("{spyId}/removeSkill/{skill}")]
         public IActionResult RemoveSkill(Guid spyId, SpySkills skill)
@@ -109,5 +114,7 @@ namespace TeamHarrySpyDuhPoject.Controllers
 
             return Ok(spy);
         }
+
+
     }
 }

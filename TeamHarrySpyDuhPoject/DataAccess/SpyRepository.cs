@@ -5,9 +5,11 @@ using TeamHarrySpyDuhPoject.Models;
 
 namespace TeamHarrySpyDuhPoject.DataAccess
 {
-    public class SpyRepository
+    namespace TeamHarrySpyDuhPoject.DataAccess
     {
-        static List<Spy> _spies = new List<Spy>
+        public class SpyRepository
+        {
+            static List<Spy> _spies = new List<Spy>
         {
             new Spy
             {
@@ -26,6 +28,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
                     SpyServices.Propaganda,
                     SpyServices.StealBlueprint
                 },
+                AgencyId = Guid.NewGuid()
             },
             new Spy
             {
@@ -44,7 +47,7 @@ namespace TeamHarrySpyDuhPoject.DataAccess
                     SpyServices.DiplomaticPressure,
                     SpyServices.Sabotage
                 },
-
+                AgencyId = Guid.NewGuid()
             },
             new Spy
             {
@@ -62,11 +65,11 @@ namespace TeamHarrySpyDuhPoject.DataAccess
                     SpyServices.StealBlueprint,
                     SpyServices.BuildNetwork
                 },
-
+                AgencyId = Guid.NewGuid()
             }
         };
 
-        internal IEnumerable<Spy> GetAll()
+            internal IEnumerable<Spy> GetAll()
         {
            return _spies;
         }
@@ -93,6 +96,12 @@ namespace TeamHarrySpyDuhPoject.DataAccess
             return _spies.FirstOrDefault(spy => spy.Id == spyId);
         }
 
+        internal IEnumerable<Spy> GetAgencySpies(Guid agencyId)
+        {
+            var AgencySpies = _spies.Where(spy => spy.AgencyId == agencyId);
+
+            return AgencySpies;
+        }
 
     }
     public class SpyInfo
