@@ -29,11 +29,11 @@ namespace TeamHarrySpyDuhPoject.Controllers
         {
             var skilledSpies = _repo.GetBySkill(skill);
 
-            return skilledSpies.Select(spy => 
+            return skilledSpies.Select(spy =>
                 new SpyWithSkill
-                { 
-                    Id = spy.Id, 
-                    Name = spy.Name 
+                {
+                    Id = spy.Id,
+                    Name = spy.Name
                 });
         }
 
@@ -76,8 +76,6 @@ namespace TeamHarrySpyDuhPoject.Controllers
 
         }
 
-
-
         [HttpGet("enemiesList")]
         public IActionResult ShowSpyEnemies(Guid enemyId)
         {
@@ -86,6 +84,18 @@ namespace TeamHarrySpyDuhPoject.Controllers
             return Ok(spyWithEnemies.Enemies);
         }
 
-        
+        [HttpGet("daysRemaining")]
+        public IActionResult TimeLeft(Guid spyId)
+        {
+            var spy = _repo.GetSpyById(spyId);
+
+            var today = DateTime.Now;
+            var dateDiff = spy.MissionEndDate.Subtract(today);
+
+            var howManyDaysLeft = dateDiff.Days;
+
+            return Ok(howManyDaysLeft);
+        }
+
     }
 }
